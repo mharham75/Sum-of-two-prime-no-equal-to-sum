@@ -1,0 +1,72 @@
+import java.lang.*;
+import java.io.*;
+import java.util.*;
+public class Main
+{
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int t = sc.nextInt();
+		for(int x=0; x<t; x++)
+		{
+		    int sum = sc.nextInt();
+		    ArrayList<Integer> al = new ArrayList<>();
+		    for(int j=2; j<=sum ; j++)
+		    {
+		        int res = calPrime(j);
+		        if(res!=0 && res!=4)
+		        al.add(calPrime(res));
+		    }
+		    
+		    //System.out.println(al);
+		    Iterator<Integer> itr = al.iterator();
+		    int fin = 0;
+		    int start = 0;
+		    int end = al.size()-1;
+		    
+		    for(int i=0; i<al.size(); i++)
+		    {
+		        if(al.get(start)+al.get(end)==sum)
+		        {
+		            System.out.println(al.get(start)+" "+al.get(end));
+		            fin++;
+		            break;
+		        }
+		        
+		        else if(al.get(start)+al.get(end)>sum)
+		        {   end -- ;}
+		        
+		        else
+		        {   start ++ ;  }
+		    }
+		    
+		    if(fin==0)
+		    System.out.println("-1");
+		   
+		}
+	}
+	
+	public static int calPrime(int num)
+	{
+        int n = num;
+        int count = 0;
+        if(n==2)
+        return 2;
+        else
+        {
+        for(int i=2; i<n/2; i++)
+        {
+            if(n%i==0)
+            {
+                count++;
+                break;
+            }
+        }
+        
+        if(count==0)
+        return n;
+        
+        else
+        return 0;
+        }
+	}
+}
